@@ -53,3 +53,4 @@ service-account*.json
 
 # local logs
 *.log
+.env.local
