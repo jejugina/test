@@ -1,5 +1,7 @@
 "use client";
+import CamelliaMark from "@/app/camellia-mark";
 
+import Localized from "@/app/i18n/localized";
 import { useId, useState, type CSSProperties } from "react";
 import "../css/pyramid.css";
 
@@ -20,12 +22,12 @@ export default function Pyramid({ levels = defaultLevels, title = "작은 숲에
   const visibleLevels = levels.slice(0, 7);
   const selected = visibleLevels.find(level => level.id === selectedId) ?? visibleLevels[visibleLevels.length - 1];
   if (!selected) return null;
-  return <section className="bloom-pyramid" aria-labelledby={titleId}>
+  return <Localized>{<section className="bloom-pyramid" aria-labelledby={titleId}>
     <header className="bloom-pyramid__header"><span className="bloom-pyramid__eyebrow">BLOOM / STORY PYRAMID</span><h2 id={titleId}>{title}</h2><p>{subtitle}</p></header>
     <div className="bloom-pyramid__layers" role="group" aria-label="피라미드 이야기 단계">
       {visibleLevels.map((level,index) => <button key={level.id} type="button" className="bloom-pyramid__layer" aria-pressed={selected.id === level.id} aria-controls={detailId} onClick={() => setSelectedId(level.id)} style={{ "--layer-width": `${((index+1)/visibleLevels.length)*100}%`, "--layer-inset": `${50/(index+1)}%`, "--layer-color": ["#e7dcae", "#c3cc9b", "#97b087", "#6f9370", "#447055", "#365e49", "#294b3c"][index], "--layer-ink": index < 3 ? "#203e2d" : "#fff9e9" } as CSSProperties}><span>{level.label}</span><span className="bloom-pyramid__check" aria-hidden="true">{selected.id === level.id ? "•" : ""}</span></button>)}
     </div>
     <div id={detailId} className="bloom-pyramid__detail" aria-live="polite" aria-atomic="true"><span className="bloom-pyramid__eyebrow">{selected.label}</span><h3>{selected.title}</h3><p>{selected.description}</p></div>
-    <footer className="bloom-pyramid__footer">bloom<span aria-hidden="true">✳</span></footer>
-  </section>;
+    <footer className="bloom-pyramid__footer">bloom<CamelliaMark /></footer>
+  </section>}</Localized>;
 }

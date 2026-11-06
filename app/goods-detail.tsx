@@ -1,7 +1,8 @@
 "use client";
 
+import Localized from "@/app/i18n/localized";
 import { useEffect, useRef } from "react";
-import Image from "next/image";
+
 import GoodsImage from "./goods-image";
 import { goods } from "./goods-data";
 
@@ -17,7 +18,7 @@ export default function GoodsDetail({ item, onClose }: {
     dialog.current?.showModal();
   }, []);
 
-  return (
+  return <Localized>{(
     <dialog
       ref={dialog}
       className="goods-detail-dialog"
@@ -40,11 +41,7 @@ export default function GoodsDetail({ item, onClose }: {
             <button className="button" type="button" onClick={() => dialog.current?.close()}>목록으로 돌아가기</button>
           </div>
         </div>
-        <details className="goods-detail-angles">
-          <summary>다양한 각도로 보기</summary>
-          <Image src={item.image} width={1456} height={1094} sizes="(max-width: 700px) 90vw, 800px" alt={item.name + " 각도별 디자인 전체 보기"} />
-        </details>
       </div>
     </dialog>
-  );
+  )}</Localized>;
 }
