@@ -1140,6 +1140,21 @@ Object.assign(messages, {
 
 Object.assign(messages, { "4장의 이야기 보기 ↗": { en: "See the four stories ↗", zh: "查看四张故事卡 ↗" } });
 
+Object.assign(messages, {
+  "동백 씨앗과 동백오일 캐릭터": {
+    "en": "Camellia seed and oil mascots",
+    "zh": "山茶籽和山茶油角色"
+  },
+  "동백 씨앗과 동백오일": {
+    "en": "Camellia seed and oil",
+    "zh": "山茶籽与山茶油"
+  },
+  "작은 씨앗이 황금빛 오일이 되는 이야기를 들려줘요.": {
+    "en": "They tell the story of a tiny seed becoming golden oil.",
+    "zh": "讲述小小种子变成金色山茶油的故事。"
+  }
+});
+
 export function translate(text: string, locale: Locale): string {
  if(locale==="ko")return text;
  const key=text.trim().replace(/\s+/g," ");
